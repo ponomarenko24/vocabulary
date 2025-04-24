@@ -1,0 +1,1 @@
+ /Users/volodymyrponomarenko/Projects/Flutter/vocabulary/.dart_tool/flutter_build/7552e9c141d7aec64db495be8325ee3e/native_assets.json: 
