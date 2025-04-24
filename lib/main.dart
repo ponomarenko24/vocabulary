@@ -1,20 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:vocabulary/add_word.dart';
 
 void main() {
   runApp(const MainApp());
 }
 
-class MainApp extends StatelessWidget {
+class MainApp extends StatefulWidget {
   const MainApp({super.key});
 
   @override
+  State<MainApp> createState() => _MainAppState();
+}
+
+class _MainAppState extends State<MainApp> {
+  @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
+        body: const Center(child: Text('Hello World!')),
+        floatingActionButton: floatingButtonAdd(),
       ),
     );
+  }
+
+  Builder floatingButtonAdd() {
+    return Builder(
+        builder: (context) {
+          return FloatingActionButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const AddWord()),
+              );
+            },
+            child: const Icon(Icons.add),
+          );
+        }
+      );
   }
 }
