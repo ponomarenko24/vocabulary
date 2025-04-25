@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:vocabulary/word.dart';
+import 'package:vocabulary/wordProvider.dart';
 
-class AddWord extends StatefulWidget {
-  const AddWord({super.key});
+class AddWordScreen extends StatefulWidget {
+  const AddWordScreen({super.key});
 
   @override
-  State<AddWord> createState() => _AddWordState();
+  State<AddWordScreen> createState() => _AddWordScreenState();
 }
 
-class _AddWordState extends State<AddWord> {
+class _AddWordScreenState extends State<AddWordScreen> {
   final TextEditingController wordController = TextEditingController();
   final TextEditingController translationController = TextEditingController();
 
@@ -108,13 +111,17 @@ class _AddWordState extends State<AddWord> {
     String translation = translationController.text.trim();
 
     if (word.isNotEmpty && translation.isNotEmpty) {
-      print('Збережено: $word — $translation');
-  
-      Navigator.pop(context);
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please, fill in both textfields')),
-      );
+      if (word.isNotEmpty && translation.isNotEmpty) {
+        Provider.of<WordProvider>(
+          context,
+          listen: false,
+        ).addWord(Word(word: word, translation: translation));
+        Navigator.pop(context);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Please, fill in both textfields')),
+        );
+      }
     }
   }
 
