@@ -17,6 +17,7 @@ class _MainAppState extends State<MainApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        appBar: AppBar(title: const Text('My vocabulary')),
         body: const Center(child: Text('Hello World!')),
         floatingActionButton: floatingButtonAdd(),
       ),
@@ -25,17 +26,17 @@ class _MainAppState extends State<MainApp> {
 
   Builder floatingButtonAdd() {
     return Builder(
-        builder: (context) {
-          return FloatingActionButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const AddWord()),
-              );
-            },
-            child: const Icon(Icons.add),
-          );
-        }
-      );
+      builder: (context) {
+        return FloatingActionButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const AddWord()),
+            );
+          },
+          child: const Icon(Icons.add),
+        );
+      },
+    );
   }
 }
